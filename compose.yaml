@@ -3,7 +3,7 @@ version: '3.1'
 
 services:
   api:
-    build: api
+    build: .
     image: api
     container_name: api
     env_file: 
@@ -13,17 +13,14 @@ services:
     image: mysql
     restart: always
     environment:
-      DB_HOST='127.0.0.1'
-      DB_DATABASE='CCSVideos'
-      DB_USER='ccs-videos-connector'
-      DB_PASS='connectorPassword123*'
+      MYSQL_ROOT_PASSWORD: connectorPassword123*
+      MYSQL_USER: ccs-videos-connector
+      MYSQL_HOST : 127.0.0.1
+      MYSQL_DATABASE: CCSVideos
     volumes:
-      - container-volume:/var/lib/mysql
+      - /var/lib/mysql
       - ./_init_.sql:/docker-entrypoint-initdb.d/_init_.sql
     ports:
       - "3306:3306"
-  
-  volumes:
-    container_volume:
 
   
