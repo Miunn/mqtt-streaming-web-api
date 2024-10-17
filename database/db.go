@@ -2,11 +2,9 @@ package database
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -26,12 +24,6 @@ type DatabaseConfig struct {
 }
 
 func loadConfig() *DatabaseConfig {
-	// Load dotenv
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	// Get database config
 	db := &DatabaseConfig{
 		Host:     os.Getenv("DB_HOST"),
