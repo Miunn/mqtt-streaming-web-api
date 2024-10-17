@@ -1,0 +1,29 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  api:
+    build: api
+    image: api
+    container_name: api
+    env_file: 
+      - path: ./.env
+  
+  db:
+    image: mysql
+    restart: always
+    environment:
+      DB_HOST='127.0.0.1'
+      DB_DATABASE='CCSVideos'
+      DB_USER='ccs-videos-connector'
+      DB_PASS='connectorPassword123*'
+    volumes:
+      - container-volume:/var/lib/mysql
+      - ./_init_.sql:/docker-entrypoint-initdb.d/_init_.sql
+    ports:
+      - "3306:3306"
+  
+  volumes:
+    container_volume:
+
+  
