@@ -11,7 +11,7 @@ import (
 
 type Video struct {
 	gorm.Model
-	VideoID   string
+	VideoID   string `gorm:"unique"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
